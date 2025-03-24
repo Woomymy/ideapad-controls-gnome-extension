@@ -40,4 +40,5 @@ clean:
 	rm -f $(EXTENSION_ZIP) template.ui
 
 all: install
+extension_zip: $(EXTENSION_ZIP)
 
