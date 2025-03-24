@@ -17,13 +17,13 @@ export default class IdeapadControlsPreferences extends ExtensionPreferences {
         const page = builder.get_object('prefs_page');
 
         const extensionSettings = this.getSettings();
-        // Extension Menu - Extension menu location ComboBox
-        const locationComboBox = builder.get_object('location_combo');
+        // Extension Menu - Extension menu location DropDown (0: tray, 1: system menu)
+        const locationDropDown = builder.get_object('location_dropdown');
 
-        locationComboBox.set_active_id(extensionSettings.get_boolean('tray-location') ? 'tray' : 'system_menu');
+        locationDropDown.set_selected(extensionSettings.get_boolean('tray-location') ? 0 : 1);
 
-        locationComboBox.connect('changed', () => {
-            extensionSettings.set_boolean('tray-location', locationComboBox.get_active_id() === 'tray');
+        locationDropDown.connect('notify::selected-item', () => {
+            extensionSettings.set_boolean('tray-location', locationDropDown.get_selected() === 0);
         });
 
         // Extension menu - Sysfs path

@@ -17,12 +17,14 @@ Adw.PreferencesPage prefs_page {
       title: _("Extension menu location");
       subtitle: _("Choose where to place the extension menu.");
 
-      ComboBoxText location_combo {
+      DropDown location_dropdown {
         valign: center;
-        items [
-          tray: _("Tray"),
-          system_menu: _("System Menu")
-        ]
+        model: StringList {
+            strings [
+                _("Tray"),
+                _("System Menu")
+            ]
+        };
       }
     }
 
