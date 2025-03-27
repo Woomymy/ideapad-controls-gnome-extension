@@ -13,7 +13,7 @@ GNOME Shell extension for controling Lenovo IdeaPad laptops options.
 Make sure the `gettext` package is installed, or install it with your package manager.
 
 ## GNOME Extensions
-Install from [GNOME Extensions](https://extensions.gnome.org/extension/5260/ideapad-controls/).
+Install from [GNOME Extensions](https://extensions.gnome.org/extension/8007/ideapad-controls/).
 
 ## Manual
 
