@@ -1,4 +1,4 @@
-EXTENSION_ZIP := ideapad-controls@azzamalsharafi.gmail.com.shell-extension.zip
+EXTENSION_ZIP := ideapad-controls@woomymy.protonmail.com.shell-extension.zip
 TMPFILES_CONF := 99-ideapad.conf
 
 subprojects:
