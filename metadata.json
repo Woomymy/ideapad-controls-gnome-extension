@@ -6,7 +6,7 @@
   "shell-version": [
     "45", "46", "47", "48"
   ],
-  "version": 18,
+  "version": 19,
   "settings-schema": "org.gnome.shell.extensions.ideapad-controls",
   "gettext-domain": "ideapad-controls@azzamalsharafi.gmail.com"
 }
