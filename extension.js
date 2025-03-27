@@ -13,7 +13,6 @@ export default class IdeapadControlsExtension extends Extension {
         super(metadata);
 
         console.info(`Initialising ${this.metadata.name}`);
-        this.initTranslations(this.metadata.uuid);
     }
 
     enable() {

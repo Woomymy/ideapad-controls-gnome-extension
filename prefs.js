@@ -7,7 +7,6 @@ import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Ex
 export default class IdeapadControlsPreferences extends ExtensionPreferences {
     constructor(metadata) {
         super(metadata);
-        this.initTranslations(this.metadata.uuid);
     }
 
     fillPreferencesWindow(window) {
