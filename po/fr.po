@@ -56,12 +56,10 @@ msgstr "Utiliser pkexec"
 #: template.blp:40
 msgid ""
 "Enable to make ideapad_laptop wrap its write commands with pkexec to request "
-"root privileges. Disable only if you have a proper permissions setup (see "
-"README for more details)"
+"root privileges."
 msgstr ""
 "Activer pour faire en sorte que ideapad_laptop utilise pkexec pour demander "
-"les privilèges du super-utilisateur. Désactiver seulement si vous avez "
-"configuré les permissions comme indiqué dans le README"
+"les privilèges du super-utilisateur."
 
 #: template.blp:48
 msgid "Send success notifications"
@@ -123,6 +121,10 @@ msgstr "Pavé tactile"
 #: optionsUtils.js:5
 msgid "USB Charging"
 msgstr "Charge USB"
+
+# prefs.js:83
+msgid "Can't disable pkexec because the extension is not allow to write files. See %s for more details."
+msgstr "Impossible de désactiver pkexec car l'extension n'a pas le droit d'écrire des fichiers. Rendez vous sur %s pour plus d'informations"
 
 #: prefs.js:103
 #, javascript-format

@@ -9,6 +9,22 @@ export default class IdeapadControlsPreferences extends ExtensionPreferences {
         super(metadata);
     }
 
+    getFileGid(filePath) {
+        // If we can't read at all, consider the file is owned by root
+        let gid = 0;
+
+        try {
+            const fd = Gio.File.new_for_path(filePath);
+            const info = fd.query_info(Gio.FILE_ATTRIBUTE_UNIX_GID, Gio.FileQueryInfoFlags.NONE, null);
+            gid = info.get_attribute_uint32(Gio.FILE_ATTRIBUTE_UNIX_GID);
+        } catch(e) {
+            console.log(`Can't open $            Gio.FileQueryInfoFlags.NONE, null)
+{filePath} for GID checking`)
+        }
+
+        return gid;
+    }
+
     fillPreferencesWindow(window) {
         const builder = Gtk.Builder.new();
         builder.translation_domain = this.metadata.uuid;
@@ -53,9 +69,24 @@ export default class IdeapadControlsPreferences extends ExtensionPreferences {
         );
 
         // Extension Menu - pkexec button switch
-        const pkexecButtonSwitch = builder.get_object('pkexec_button_switch');
+        const sysfsPath = extensionSettings.get_string('sysfs-path');
+        const supportedOptions = getSupportedOptions(sysfsPath);
+        let tmpFilesInstalled = true;
 
-        builder.get_object('pkexec_button_row').activatable_widget = pkexecButtonSwitch;
+        if (supportedOptions.length > 0) {
+            // If GID is 0, the file is owned by root
+            tmpFilesInstalled = this.getFileGid(`${sysfsPath}/${supportedOptions[0]}`) != 0;
+        }
+
+        const pkexecButtonSwitch = builder.get_object('pkexec_button_switch');
+        const pkexecButtonRow = builder.get_object('pkexec_button_row');
+        pkexecButtonRow.activatable_widget = pkexecButtonSwitch;
+
+        // Don't allow to disable pkexec if we can't write the files
+        if (!tmpFilesInstalled) {
+            pkexecButtonRow.set_sensitive(false);
+            pkexecButtonRow.set_subtitle(_("Can't disable pkexec because the extension is not allowed to write files. See %s for more details.").format(this.metadata.url));
+        }
 
         extensionSettings.bind(
             'use-pkexec',

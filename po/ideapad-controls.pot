@@ -56,8 +56,7 @@ msgstr ""
 #: template.blp:40
 msgid ""
 "Enable to make ideapad_laptop wrap its write commands with pkexec to request "
-"root privileges. Disable only if you have a proper permissions setup (see "
-"README for more details)"
+"root privileges."
 msgstr ""
 
 #: template.blp:48
@@ -122,6 +121,10 @@ msgstr ""
 #: prefs.js:103
 #, javascript-format
 msgid "%s switch"
+msgstr ""
+
+# prefs.js:83
+msgid "Can't disable pkexec because the extension is not allowed to write files. See %s for more details."
 msgstr ""
 
 #: menus.js:18
