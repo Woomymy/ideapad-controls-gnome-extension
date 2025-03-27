@@ -127,17 +127,19 @@ export default class IdeapadControlsExtension extends Extension {
         const notificationBody = `${(value === true ? _('Enabled %s') : _('Disabled %s')).format(_(getOptionName(optionFile)))}`;
         const destinationValue = value ? '1' : '0';
         const destinationFile = sysfsPath + optionFile;
+        let status = true;
 
         if (this.settings.get_boolean('use-pkexec')) {
-            if (this.settings.get_boolean('send-success-notifications'))
-                GLib.spawn_command_line_async(`bash -c "pkexec bash -c 'echo ${destinationValue} > ${destinationFile}' && notify-send '${_('Ideapad Controls')}' '${notificationBody}' "`);
-            else
-                GLib.spawn_command_line_async(`pkexec bash -c 'echo ${destinationValue} > ${destinationFile}'`);
+            status = GLib.spawn_command_line_async(`pkexec bash -c 'echo ${destinationValue} > ${destinationFile}'`);
         } else {
             console.log(`Writing string to file ${destinationValue} ${destinationFile}`);
-            writeStringToFile(destinationValue, destinationFile);
-            if (this.settings.get_boolean('send-success-notifications'))
-                notify(_('Ideapad Controls'), notificationBody);
+            status = writeStringToFile(destinationValue, destinationFile);
+        }                
+
+        if (status && this.settings.get_boolean('send-success-notifications')) {
+            notify(_("Ideapad Controls"), notificationBody);
+        } else {
+            notify(_("Ideapad Controls"), _("Failed to enable %s").format(_(getOptionName(optionFile))));
         }
     }
 }

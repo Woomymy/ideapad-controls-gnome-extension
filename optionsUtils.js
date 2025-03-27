@@ -13,6 +13,7 @@ const ALL_OPTION_FILES = ['conservation_mode', 'camera_power', 'fn_lock', 'touch
  * @param {string} filePath The destination file
  */
 export async function writeStringToFile(string, filePath) {
+    let wrote = true;
     const fd = Gio.File.new_for_path(filePath);
     const contentBytes = new GLib.Bytes(string);
 
@@ -31,7 +32,10 @@ export async function writeStringToFile(string, filePath) {
     } catch (e) {
         console.log(`Something went wrong while writing ${string} to ${filePath}: ${e}`);
         console.log('Look at the readme for permission errors fixes.');
+        wrote = false;
     }
+
+    return wrote;
 }
 
 // Check each option and determine if they are available in this device.

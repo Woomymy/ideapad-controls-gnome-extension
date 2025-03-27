@@ -99,6 +99,10 @@ msgstr "Disabled %s"
 msgid "Ideapad Controls"
 msgstr "Ideapad Controls"
 
+#: extension.js:144
+msgid "Failed to enable %s"
+msgstr "Failed to enable %s"
+
 #. All options that the extension can support, regardless of the current device running the extension.
 #: optionsUtils.js:5
 msgid "Conservation Mode"
