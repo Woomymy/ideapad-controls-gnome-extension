@@ -1,0 +1,139 @@
+# Italian translations for the IdeaPad Controls GNOME extension
+# Copyright (C) 2023
+# This file is distributed under the same license as the PACKAGE package.
+# Albano Battistella <albanobattistella@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-20 09:46+0100\n"
+"PO-Revision-Date: 2025-04-05 14:50+0100\n"
+"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: template.blp:6
+msgid "Extension Menu"
+msgstr "Menu estensione"
+
+#: template.blp:9
+msgid "Sysfs path of the ideapad_laptop dir"
+msgstr "Percorso Sysfs della directory ideapad_laptop"
+
+#: template.blp:17
+msgid "Extension menu location"
+msgstr "Posizione del menu dell'estensione"
+
+#: template.blp:18
+msgid "Choose where to place the extension menu."
+msgstr "Scegli dove posizionare il menu dell'estensione."
+
+#: template.blp:23
+msgid "Tray"
+msgstr "Barra delle applicazioni"
+
+#: template.blp:24
+msgid "System Menu"
+msgstr "Menu di sistema"
+
+#: template.blp:30
+msgid "Settings button"
+msgstr "Pulsante Impostazioni"
+
+#: template.blp:31
+msgid "Enable to show Extension Settings button."
+msgstr "Abilita per mostrare il pulsante Impostazioni estensione."
+
+#: template.blp:39
+msgid "Use pkexec"
+msgstr "Usa pkexec"
+
+#: template.blp:40
+msgid ""
+"Enable to make ideapad_laptop wrap its write commands with pkexec to request "
+"root privileges."
+msgstr ""
+"Abilita questa opzione per far sì che il portatile IdeaPad esegua i comandi di scrittura "
+"con pkexec per richiedere i privilegi di root."
+
+#: template.blp:48
+msgid "Send success notifications"
+msgstr "Invia notifiche "
+
+#: template.blp:49
+msgid ""
+"Enable to make the extension send notifications when it enables an option "
+"successfully"
+msgstr ""
+"Abilita per far sì che l'estensione invii notifiche quando abilita un'opzione"
+"con successo"
+
+#: template.blp:58
+msgid "Options"
+msgstr "Opzioni"
+
+#: template.blp:59
+msgid "Choose which options to keep in the extension menu."
+msgstr "Scegli quali opzioni mantenere nel menu dell'estensione."
+
+#: extension.js:98
+msgid "Extension Settings"
+msgstr "Impostazioni dell'estensione"
+
+#: extension.js:128
+msgid "Enabled %s"
+msgstr "Abilitato %s"
+
+#: extension.js:128
+msgid "Disabled %s"
+msgstr "Disabilitato %s"
+
+#: extension.js:134 extension.js:141
+msgid "Ideapad Controls"
+msgstr "Controlli Ideapad"
+
+#: extension.js:144
+msgid "Failed to enable %s"
+msgstr "Impossibile abilitare %s"
+
+#. All options that the extension can support, regardless of the current device running the extension.
+#: optionsUtils.js:5
+msgid "Conservation Mode"
+msgstr "Modalità di conservazione"
+
+#: optionsUtils.js:5
+msgid "Camera"
+msgstr "Webcam"
+
+#: optionsUtils.js:5
+msgid "Fn Lock"
+msgstr "Blocco Fn"
+
+#: optionsUtils.js:5
+msgid "Touchpad"
+msgstr "Touchpad"
+
+#: optionsUtils.js:5
+msgid "USB Charging"
+msgstr "Ricarica USB"
+
+#: prefs.js:103
+#, javascript-format
+msgid "%s switch"
+msgstr "Configurazione di: %s"
+
+# prefs.js:83
+msgid "Can't disable pkexec because the extension is not allowed to write files. See %s for more details."
+msgstr "Impossibile disabilitare pkexec perché l'estensione non è autorizzata a scrivere file. Vedere %s per maggiori dettagli."
+
+#: menus.js:18
+msgid "IdeaPad"
+msgstr "IdeaPad"
+
+#: menus.js:22
+msgid "IdeaPad Controls"
+msgstr "Controlli per IdeaPad"
