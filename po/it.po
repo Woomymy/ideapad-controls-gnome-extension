@@ -57,8 +57,8 @@ msgid ""
 "Enable to make ideapad_laptop wrap its write commands with pkexec to request "
 "root privileges."
 msgstr ""
-Abilita questa opzione per far sì che il portatile IdeaPad esegua i comandi di scrittura "
-"con pkexec per richiedere i privilegi di root.
+"Abilita questa opzione per far sì che il portatile IdeaPad esegua i comandi di scrittura "
+"con pkexec per richiedere i privilegi di root."
 
 #: template.blp:48
 msgid "Send success notifications"
