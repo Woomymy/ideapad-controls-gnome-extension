@@ -32,5 +32,9 @@ groupadd ideapad_laptop
 usermod -aG ideapad_laptop $USER
 ```
 
-Then run `sudo make tmpfiles-install` inside repo's directory.
+Then download the `99-ideapad.conf` file from this repository and place it into `/etc/tmpfiles.d` (requires root privileges).
+
+You can also do it by using `sudo curl -o /etc/tmpfiles.d/99-ideapad.conf https://raw.githubusercontent.com/Woomymy/ideapad-controls-gnome-extension/refs/heads/master/99-ideapad.conf`
+
+If you have a local copy of the repository, you can also run `make tmpfiles-install` in the root of the repo.
 
