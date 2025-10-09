@@ -54,7 +54,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <child>
           <object class="AdwActionRow" id="pkexec_button_row">
             <property name="title" translatable="yes">Use pkexec</property>
-            <property name="subtitle" translatable="yes">Enable to make ideapad_laptop wrap its write commands with pkexec to request root privileges. Disable only if you have a proper permissions setup (see README for more details)</property>
+            <property name="subtitle" translatable="yes">Enable to make ideapad_laptop wrap its write commands with pkexec to request root privileges.</property>
             <child>
               <object class="GtkSwitch" id="pkexec_button_switch">
                 <property name="valign">3</property>

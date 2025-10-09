@@ -1,5 +1,4 @@
 import Gio from 'gi://Gio';
-import GLib from 'gi://GLib';
 
 import {Extension, gettext as _} from 'resource:///org/gnome/shell/extensions/extension.js';
 import {panel, notify} from 'resource:///org/gnome/shell/ui/main.js';
@@ -110,9 +109,16 @@ export default class IdeapadControlsExtension extends Extension {
     // Read option value from driver file.
     getOptionValue(sysfsPath, optionFile) {
         const file = Gio.File.new_for_path(sysfsPath + optionFile);
-        const [success, contents] = file.load_contents(null);
-        if (!success) {
-            console.error(`Can't write ${optionFile}`);
+        let contents;
+        try {
+            let success;
+            [success, contents] = file.load_contents(null);
+            if (!success) {
+                console.error(`Could not read ${optionFile}`);
+                return '0';
+            }
+        } catch (e) {
+            console.error(`Could not read ${optionFile}: ${e}`);
             return '0';
         }
 
@@ -123,21 +129,38 @@ export default class IdeapadControlsExtension extends Extension {
     }
 
     // Write option value to driver file.
-    setOptionValue(sysfsPath, optionFile, value) {
+    async setOptionValue(sysfsPath, optionFile, value) {
         const notificationBody = `${(value === true ? _('Enabled %s') : _('Disabled %s')).format(_(getOptionName(optionFile)))}`;
         const destinationValue = value ? '1' : '0';
         const destinationFile = sysfsPath + optionFile;
         let status = true;
 
         if (this.settings.get_boolean('use-pkexec')) {
-            status = GLib.spawn_command_line_async(`pkexec bash -c 'echo ${destinationValue} > ${destinationFile}'`);
+            let escaped = destinationFile.replaceAll("/'/g", "'\\''");
+            try {
+                const proc = Gio.Subprocess.new(['pkexec', 'bash', '-c', `echo ${destinationValue} > '${escaped}'`], Gio.Subprocess.None);
+                status = await new Promise((resolve, reject) => {
+                    proc.wait_check_async(null, (_proc, result, _data) => {
+                        try {
+                            resolve(_proc.wait_check_finish(result));
+                        } catch (e) {
+                            reject(e);
+                        }
+                    });
+                });
+            } catch (e) {
+                console.error(`Could not write to file ${destinationFile}: ${e}`);
+                status = false;
+            }
         } else {
             console.log(`Writing string to file ${destinationValue} ${destinationFile}`);
-            status = writeStringToFile(destinationValue, destinationFile);
-        }                
+            status = await writeStringToFile(destinationValue, destinationFile);
+        }
 
-        if (status && this.settings.get_boolean('send-success-notifications')) {
-            notify(_("Ideapad Controls"), notificationBody);
+        if (status) {
+            if (this.settings.get_boolean('send-success-notifications')) {
+                notify(_("Ideapad Controls"), notificationBody);
+            }
         } else {
             notify(_("Ideapad Controls"), _("Failed to enable %s").format(_(getOptionName(optionFile))));
         }

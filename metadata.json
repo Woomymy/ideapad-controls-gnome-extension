@@ -4,7 +4,7 @@
   "description": "Control Lenovo IdeaPad laptops options: Conservation Mode, Camera Lock, Fn Lock, Touchpad Lock, USB charging",
   "url": "https://github.com/Woomymy/ideapad-controls-gnome-extension",
   "shell-version": [
-    "45", "46", "47", "48"
+    "45", "46", "47", "48", "49"
   ],
   "version": 20,
   "settings-schema": "org.gnome.shell.extensions.ideapad-controls",
